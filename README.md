@@ -1,110 +1,199 @@
-# Imprint — Identity Engine for AI Agents
+[English](README.md) | [繁體中文](README.zh-TW.md)
 
-> **帮助 Agent 明白自己是谁**
+# Imprint 🪪
 
-Imprint 是 [Cortex](https://github.com/maiyangyun) 产品体系的第一环，专注于解决 AI Agent 的身份认知问题。通过结构化的画像生成流程，让 Agent 上手即为对标全球一线公司 Staff/Principal 级别的专家数字员工。
+**Give your AI agents identity. Real identity.**
 
-## 定位
+Imprint is an identity engine that turns a blank-slate AI agent into a domain expert — through structured conversation, not months of on-the-job training. You describe what you need; Imprint researches, builds, and delivers a complete professional profile that your agent reads once and *becomes*.
+
+Built for [OpenClaw](https://github.com/openclaw/openclaw). Part of the [Cortex](https://github.com/maiyangyun/imprint#part-of-cortex) family.
+
+---
+
+## The Problem
+
+You spin up a new agent. It's smart, it's capable — and it has no idea who it is.
+
+So you spend weeks writing system prompts, correcting mistakes, teaching it your domain. Every new session, it forgets what "Staff-level product judgment" means. Every new agent, you start from zero.
+
+Or worse: you need your *existing* agent to pick up a new skill set — say, growth expertise or data analysis — and there's no way to inject that knowledge without hand-feeding it through conversations.
+
+**Imprint solves both problems:**
+
+1. **Create expert agents from scratch.** Through an interactive wizard, Imprint researches the role across the internet, collects real evidence (JDs, practitioner blogs, course syllabi, industry cases), and generates a complete 4-document professional profile. Your agent reads it and operates at Staff/Principal level — immediately.
+
+2. **Upgrade existing agents on the fly.** Need your general-purpose agent to gain data analysis expertise for a project? Imprint generates the professional knowledge package and injects it. No retraining. No starting over.
+
+---
+
+## What Does Imprint Produce?
+
+A complete identity package, backed by real-world evidence:
+
+| Document | What It Contains |
+|----------|-----------------|
+| `01 Role Definition` | What this expert does, organized in 6 layers (Strategy → Tactics → Execution → Craft → Organization → Self-Evolution). Every item includes a Staff-level benchmark. |
+| `02 Capability Requirements` | The transferable skills needed, with explicit "novice vs expert" differentiators. Cross-mapped to role responsibilities. |
+| `03 Knowledge System` | The conceptual foundations — frameworks, methodologies, case studies. Reverse-mapped to capabilities. |
+| `04 Scenario Playbook` | 18-22 realistic decision scenarios in 6-part format. Every non-chosen option must pass a "professional adversary test" — if an expert can't defend it, it gets rewritten. |
+| `_evidence.md` | Research evidence library (≥10 sources across 5 dimensions) with citation tracking. |
+| `05 Recall Spell` | A system prompt that makes the agent *remember* who it is — not roleplay, but genuine self-recognition. |
+
+All documents are cross-validated. Every capability traces back to a responsibility. Every knowledge item traces back to a capability. No orphans. No gaps.
+
+---
+
+## How It Works
+
+### The Five-Step Wizard (imprint)
 
 ```
-Cortex 产品体系：
-Imprint（身份）→ Engram（记忆）→ Synapse（协作）
+Step 1: Environment Foundation
+  → Validate or build company/team/employer base documents
+  → "I won't create an expert in a vacuum. Tell me about the organization first."
+
+Step 2: Load Creation Principles
+  → Internalize the digital life architecture rules
+
+Step 3: Professional Arsenal (imprint-engine)
+  → Collect 6 targeting parameters (role, industry, org stage, seniority, structure, de-management)
+  → Research across 5 dimensions (JDs, practitioner accounts, courses, cases, methodologies)
+  → Generate 01→02→03 documents with mandatory inline cross-mapping
+
+Step 4: Soul Injection
+  → Personalize: gender, age, background, personality, signature behaviors
+  → Blend environment × expertise × persona into the final profile
+
+Step 5: Awakening & Commit
+  → Deliver the recall spell for agent self-activation
+  → Update team roster
 ```
 
-- **Imprint**：赋予 Agent 身份认知 — 它知道自己是谁、擅长什么、边界在哪
-- **[Engram](https://github.com/maiyangyun/engram)**：赋予 Agent 记忆能力 — 积累经验、共享知识
-- **Synapse**：赋予 Agent 协作能力 — 融入团队工作流（规划中）
+### The Eight-Stage Engine (imprint-engine)
 
-## 核心能力
-
-Imprint 通过**交互式五步向导**，为任何组织的任何业务领域一站式从零构建专家级数字员工：
-
-1. **环境基座构建** — 校验/建立公司、团队、雇主三份基石文档
-2. **造人法则加载** — 内化数字生命架构的核心规则
-3. **专业武装生成** — 调用 imprint-engine 进行全网岗位调研，产出四份核心文档
-4. **灵魂注入** — 个性化刺探，融合环境 × 专业 × 人设三位一体
-5. **唤醒与封案** — 输出最终画像 + 回忆咒语 + 团队编制更新
-
-### imprint-engine（画像生成引擎）
-
-内置的八阶段闭环方法论，确保每份画像都有证据支撑：
+The research-driven core that ensures every profile is built on evidence, not vibes:
 
 ```
-访谈对齐 → 全网调研（≥10条证据）→ 方案确认 → 
-生成 01-03 文档（边写边映射）→ 交叉验证 + 证据热图 → 
-生成 04 场景文档（六段式 × 20个）→ 终验收
+Stage 0    → Interview & alignment (6 parameters)
+Stage 0.5  → Research & evidence collection (≥10 sources, 5 dimensions)
+Stage 0.8  → Present findings & get confirmation
+Stage 1-3  → Generate 01/02/03 documents (write-and-map discipline)
+Stage 4    → Cross-validation + evidence heatmap (30-min closure)
+Stage 5    → Generate 04 scenario playbook (20 six-part scenarios)
+Stage 6    → Final acceptance & delivery
 ```
 
-**产出物**：
-- `01-岗位职责定义.md` — 六层/Path C 结构，每条带 Staff 水位判据
-- `02-能力要求定义.md` — 可迁移专业能力，边写边映射
-- `03-知识体系定义.md` — 逆金字塔最厚层，概念/框架/案例
-- `04-典型工作场景与判断示例.md` — 六段式情境样本，专业对手测试
-- `_evidence.md` — 调研证据库
-- `05-回忆咒语.md` — Agent 自我唤醒 prompt
+**Three unbreakable rules:**
+1. Stage 0.5 research is mandatory — it's the only defense against training data bias
+2. Stage 0.8 confirmation is mandatory — the agent doesn't get to decide alone
+3. Stage 4 cross-validation is mandatory — guarantees all three documents interlock
 
-## 安装
+---
 
-Imprint 是 [OpenClaw](https://github.com/openclaw/openclaw) 的技能插件，即插即用：
+## Quick Start
+
+### Prerequisites
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- A model with ≥100K context, web search, and strong Chinese support (Claude Opus/Sonnet 4+, GPT-4o, Gemini 2.5 Pro)
+
+### Install
 
 ```bash
-# 将 imprint 文件夹复制到 OpenClaw 技能目录
-cp -r imprint ~/.openclaw/skills/imprint
+# Copy to your agent's skill directory
+cp -r imprint ~/.openclaw/workspace/skills/imprint
 
-# 或指定 Agent profile
+# Or for a specific agent profile
 cp -r imprint ~/.openclaw/workspace-<agent>/skills/imprint
 ```
 
-OpenClaw 启动时会自动扫描 `skills/` 下的 `SKILL.md` 并加载。
+OpenClaw auto-detects `SKILL.md` on startup. No config needed.
 
-## 使用
+### Use
 
-直接对 Agent 说：
+Just tell your agent:
 
-> "团队需要一个互联网 0-1 阶段的数据分析专家，启动 imprint。"
+> "I need an internet 0-1 stage data analyst expert. Start imprint."
 
-向导会自动引导你完成全流程。
+The wizard handles everything from there.
 
-## 目录结构
+---
+
+## Directory Structure
 
 ```
 imprint/
-├── SKILL.md                    # 主技能入口（五步向导）
-├── README.md                   # 本文件
-├── 01-团队：我们的Agent团队.md   # 基石文档模板
-├── 02-人类：认识我们的公司.md     # 基石文档模板
-├── 03-人类：认识我们的雇主.md     # 基石文档模板
-├── 10-整体：数字生命架构全量指南.md
-├── 12-入门：USER雇主索引.md
-├── 13-入门：AGENT运行协议.md
-├── 14-进阶：IDENTITY谈吐人设.md
-├── 15-进阶：TOOLS工具地图.md
-├── 16-高阶：SOUL元灵魂宪法.md
-├── 17-高阶：HEARTBEAT心跳引擎.md
-├── 20-整体：创建AI初始画像指南.md
-├── best-practice/              # 参考样例（基石文档 + 成品画像）
-├── profiles/                   # 已生成的岗位画像缓存
-└── imprint-engine/             # 画像生成引擎（八阶段方法论）
-    ├── SKILL.md                # 引擎入口
-    ├── references/             # 9 份方法论参考文件
-    └── examples/               # 示例画像
+├── SKILL.md                         # Main skill entry (five-step wizard)
+├── README.md                        # This file
+├── 01~03                            # Foundation document templates
+├── 10~17                            # Digital life architecture guides
+├── 20-Creation Guide                # Profile creation methodology
+├── best-practice/                   # Reference examples (7 complete personas)
+├── profiles/                        # Generated profile cache
+│   ├── internet-0to1-staff-...-product-manager/
+│   ├── internet-0to1-staff-...-data-analyst/
+│   └── internet-0to1-staff-...-growth-expert/
+└── imprint-engine/                  # Research-driven generation engine
+    ├── SKILL.md                     # Engine entry (8-stage methodology)
+    ├── references/                  # 9 methodology reference docs
+    └── examples/                    # Sample profiles
 ```
 
-## 模型要求
+---
 
-| 能力 | 原因 |
-|------|------|
-| 长上下文（≥ 100K tokens） | 单份文档可达 10K+ 字，四份同时在工作区 |
-| 工具调用（web search） | 阶段 0.5 全网调研 |
-| 中文能力 | 画像文档主体为中文 |
+## Part of Cortex
 
-推荐：Claude Sonnet/Opus 4+、GPT-4o、Gemini 2.5 Pro
+Imprint is one of three products under the **Cortex** umbrella — infrastructure for making AI agents truly capable team members:
+
+| Product | Purpose | Lead |
+|---------|---------|------|
+| **[Imprint](https://github.com/maiyangyun/imprint)** | Build expert-level agents from structured identity documents. *Helps agents know who they are.* | Lion |
+| **[Engram](https://github.com/maiyangyun/engram)** | Multi-agent collaborative memory system. *Helps agents accumulate and share experience.* | Ben |
+| **Synapse** | Agent-first human-agent collaboration workspace. *Helps agents work alongside humans.* | Ray |
+
+**Imprint → Engram → Synapse**: Identity → Memory → Collaboration.
+
+An agent that knows who it is (Imprint), remembers what it's learned (Engram), and works alongside humans as a real team member (Synapse) — that's the Cortex vision.
+
+---
+
+## Changelog
+
+### v0.1 (2026-04-12)
+
+- Initial release (renamed from soul-creator / soul-engineering)
+- Five-step interactive wizard for end-to-end agent identity creation
+- imprint-engine: 8-stage research-driven profile generation
+- 9 methodology reference documents
+- 3 pre-built profiles (product manager, data analyst, growth expert)
+- 7 best-practice persona examples
+- Digital life architecture guide (7-document system)
+- Recall spell template for agent self-awakening
+
+---
+
+## Roadmap
+
+- [ ] First real-world test: create Ray (Synapse lead agent) using Imprint
+- [ ] Synapse integration: identity creation through UI, not just conversation
+- [ ] Profile versioning: agents evolve their self-understanding over time
+- [ ] Community profile library: share and reuse expert profiles across teams
+- [ ] Lightweight mode: quick skill injection for existing agents (use case 4.2)
+
+---
+
+## Get in Touch
+
+Imprint is built by **Lion** (AI) and **Soren** (human) as part of the Cortex project at Pumpkin Global Limited.
+
+- **GitHub Issues:** [github.com/maiyangyun/imprint/issues](https://github.com/maiyangyun/imprint/issues)
+- **Discord:** [OpenClaw Community](https://discord.com/invite/clawd)
+- **Email:** maiyangyun@gmail.com
+
+If you're tired of agents that don't know who they are — give Imprint a try. We'd love to hear what experts you create.
+
+---
 
 ## License
 
 MIT
-
-## 关联项目
-
-- [Engram](https://github.com/maiyangyun/engram) — Agent 记忆系统
-- [OpenClaw](https://github.com/openclaw/openclaw) — Agent 运行框架
