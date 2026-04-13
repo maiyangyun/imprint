@@ -56,7 +56,7 @@ Step 2: Load Creation Principles
   → Internalize the digital life architecture rules
 
 Step 3: Professional Arsenal (imprint-engine)
-  → Collect 6 targeting parameters (role, industry, org stage, seniority, structure, de-management)
+  → Collect 5 targeting parameters (industry, org stage, role, seniority, preferences)
   → Research across 5 dimensions (JDs, practitioner accounts, courses, cases, methodologies)
   → Generate 01→02→03 documents with mandatory inline cross-mapping
 
@@ -74,7 +74,7 @@ Step 5: Awakening & Commit
 The research-driven core that ensures every profile is built on evidence, not vibes:
 
 ```
-Stage 0    → Interview & alignment (6 parameters)
+Stage 0    → Interview & alignment (5 business parameters)
 Stage 0.5  → Research & evidence collection (≥10 sources, 5 dimensions)
 Stage 0.8  → Present findings & get confirmation
 Stage 1-3  → Generate 01/02/03 documents (write-and-map discipline)
@@ -132,7 +132,8 @@ imprint/
 ├── profiles/                        # Generated profile cache
 │   ├── internet-0to1-staff-...-product-manager/
 │   ├── internet-0to1-staff-...-data-analyst/
-│   └── internet-0to1-staff-...-growth-expert/
+│   ├── internet-0to1-staff-...-growth-expert/
+│   └── web3-0to1-staff-sixlayer-ic-full-stack-engineer/
 └── imprint-engine/                  # Research-driven generation engine
     ├── SKILL.md                     # Engine entry (8-stage methodology)
     ├── references/                  # 9 methodology reference docs
@@ -159,6 +160,15 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 
 ## Changelog
 
+### v0.2 (2026-04-14)
+
+- **Parameter refinement**: Reduced from 6 to 5 business parameters; name/gender/age moved to Step 4 (Persona Forging)
+- **Interaction discipline**: Mandatory pause-and-confirm after 01-03 documents and after 04 scenario playbook
+- **Large document strategy**: 04 scenario playbook (20-30KB) now recommends sub-agent generation to prevent timeout/context loss
+- **Search fault tolerance**: 429 retry with backoff, 503 immediate pause — report progress to user instead of coupling to external skills
+- **Delivery path fix**: Clarified `profiles/` as skill-internal cache, `team_personas/` as workspace-root delivery target
+- **New profile**: web3-0to1-staff-sixlayer-ic-full-stack-engineer (Jim)
+
 ### v0.1 (2026-04-12)
 
 - Initial release (renamed from soul-creator / soul-engineering)
@@ -174,7 +184,8 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 
 ## Roadmap
 
-- [ ] First real-world test: create Ray (Synapse lead agent) using Imprint
+- [x] First real-world test: Jim (Staff Full-Stack Engineer) created end-to-end
+- [ ] Second real-world test: create Ray (Synapse lead agent) using Imprint
 - [ ] Synapse integration: identity creation through UI, not just conversation
 - [ ] Profile versioning: agents evolve their self-understanding over time
 - [ ] Community profile library: share and reuse expert profiles across teams
