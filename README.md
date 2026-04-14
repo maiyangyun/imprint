@@ -28,18 +28,31 @@ Or worse: you need your *existing* agent to pick up a new skill set — say, gro
 
 ## What Does Imprint Produce?
 
-A complete identity package, backed by real-world evidence:
+A complete **Soul Package** — an OpenClaw-native workspace directory that you deploy directly to a target agent. No manual assembly. No second-pass editing.
 
-| Document | What It Contains |
-|----------|-----------------|
-| `01 Role Definition` | What this expert does, organized in 6 layers (Strategy → Tactics → Execution → Craft → Organization → Self-Evolution). Every item includes a Staff-level benchmark. |
-| `02 Capability Requirements` | The transferable skills needed, with explicit "novice vs expert" differentiators. Cross-mapped to role responsibilities. |
-| `03 Knowledge System` | The conceptual foundations — frameworks, methodologies, case studies. Reverse-mapped to capabilities. |
-| `04 Scenario Playbook` | 18-22 realistic decision scenarios in 6-part format. Every non-chosen option must pass a "professional adversary test" — if an expert can't defend it, it gets rewritten. |
-| `_evidence.md` | Research evidence library (≥10 sources across 5 dimensions) with citation tracking. |
-| `05 Recall Spell` | A system prompt that makes the agent *remember* who it is — not roleplay, but genuine self-recognition. |
+```
+soul-packages/{name}/
+├── SOUL.md           ← Core values, soul principles, decision preferences
+├── IDENTITY.md       ← Name, MBTI, personality, communication style
+├── AGENTS.md         ← Responsibilities, knowledge, methodology, demos
+├── USER.md           ← Employer info, collaboration style
+├── TOOLS.md          ← Tool configuration (initially empty)
+├── HEARTBEAT.md      ← Heartbeat engine (initially empty)
+└── references/       ← Foundation documents + professional profiles
+    ├── 01-Team.md
+    ├── 02-Company.md
+    ├── 03-Employer.md
+    └── profiles/     ← Research-backed professional knowledge
+        ├── _evidence.md
+        ├── 01-Role Definition.md
+        ├── 02-Capability Requirements.md
+        ├── 03-Knowledge System.md
+        └── 04-Scenario Playbook.md
+```
 
-All documents are cross-validated. Every capability traces back to a responsibility. Every knowledge item traces back to a capability. No orphans. No gaps.
+The professional profiles are built on real-world evidence (≥10 sources across 5 dimensions). All documents are cross-validated — every capability traces back to a responsibility, every knowledge item traces back to a capability. No orphans. No gaps.
+
+**Deploy:** Copy the soul package contents to the target agent's workspace root. The agent boots up *as* that expert — no "awakening" needed.
 
 ---
 
@@ -60,13 +73,16 @@ Step 3: Professional Arsenal (imprint-engine)
   → Research across 5 dimensions (JDs, practitioner accounts, courses, cases, methodologies)
   → Generate 01→02→03 documents with mandatory inline cross-mapping
 
-Step 4: Soul Injection
+Step 4: Soul Package Forging
   → Personalize: gender, age, background, personality, signature behaviors
-  → Blend environment × expertise × persona into the final profile
+  → Distribute content across SOUL.md / IDENTITY.md / AGENTS.md / USER.md
+  → Copy foundation docs + profiles into references/
+  → Principle: distribute, never compress — every sentence preserved in full
 
-Step 5: Awakening & Commit
-  → Deliver the recall spell for agent self-activation
+Step 5: Delivery & Commit
+  → Deliver soul package with deployment instructions
   → Update team roster
+  → Awakening spell available as optional fallback
 ```
 
 ### The Eight-Stage Engine (imprint-engine)
@@ -160,6 +176,14 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 
 ## Changelog
 
+### v0.3 (2026-04-15)
+
+- **Soul Package format**: Output changed from single persona document to complete Soul Package (OpenClaw-native workspace structure: SOUL.md / IDENTITY.md / AGENTS.md / USER.md / TOOLS.md / HEARTBEAT.md + references/)
+- **New specification section**: Soul Package directory structure, mapping rules, and "distribute not compress" principle
+- **Step 4 rewritten**: Generates 6 workspace files + references directory instead of a single persona document
+- **Step 5 rewritten**: Deployment guide (copy to workspace) replaces awakening spell (now optional)
+- **Mapping principle**: Content distributed by semantic boundaries — never compressed, every sentence preserved
+
 ### v0.2 (2026-04-14)
 
 - **Parameter refinement**: Reduced from 6 to 5 business parameters; name/gender/age moved to Step 4 (Persona Forging)
@@ -185,6 +209,8 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 ## Roadmap
 
 - [x] First real-world test: Jim (Staff Full-Stack Engineer) created end-to-end
+- [x] Soul Package deliverable format (v0.3)
+- [ ] Real-world validation: create Bonbon project agent using Soul Package format
 - [ ] Second real-world test: create Ray (Synapse lead agent) using Imprint
 - [ ] Synapse integration: identity creation through UI, not just conversation
 - [ ] Profile versioning: agents evolve their self-understanding over time
