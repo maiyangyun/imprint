@@ -32,17 +32,20 @@ A complete **Soul Package** — an OpenClaw-native workspace directory that you 
 
 ```
 soul-packages/{name}/
-├── SOUL.md           ← Core values, soul principles, decision preferences
-├── IDENTITY.md       ← Name, MBTI, personality, communication style
-├── AGENTS.md         ← Responsibilities, knowledge, methodology, demos
-├── USER.md           ← Employer info, collaboration style
+├── SOUL.md           ← Core layer: soul principles, values, decision preferences (~3KB)
+├── IDENTITY.md       ← Core layer: basic profile, personality summary (~3KB)
+├── AGENTS.md         ← Core layer: Session boot sequence + role summary + index (~5KB)
+├── USER.md           ← Core layer: employer info, collaboration style (~3KB)
 ├── TOOLS.md          ← Tool configuration (initially empty)
 ├── HEARTBEAT.md      ← Heartbeat engine (initially empty)
-└── references/       ← Foundation documents + professional profiles
-    ├── 01-Team.md
-    ├── 02-Company.md
-    ├── 03-Employer.md
-    └── profiles/     ← Research-backed professional knowledge
+└── references/       ← Detail layer: agent reads on demand
+    ├── 01-Team.md / 02-Company.md / 03-Employer.md
+    ├── soul-detail.md           ← Full soul principles & decision preferences
+    ├── identity-detail.md       ← Full personality, MBTI, career history, communication style
+    ├── responsibilities.md      ← Full six-layer responsibilities
+    ├── methodology.md           ← Full methodology toolkit with examples
+    ├── demos.md                 ← Full interaction demos
+    └── profiles/                ← Research-backed professional knowledge
         ├── _evidence.md
         ├── 01-Role Definition.md
         ├── 02-Capability Requirements.md
@@ -52,7 +55,7 @@ soul-packages/{name}/
 
 The professional profiles are built on real-world evidence (≥10 sources across 5 dimensions). All documents are cross-validated — every capability traces back to a responsibility, every knowledge item traces back to a capability. No orphans. No gaps.
 
-**Deploy:** Copy the soul package contents to the target agent's workspace root. The agent boots up *as* that expert — no "awakening" needed.
+**Deploy:** Copy the soul package contents to the target agent's workspace root. The agent boots up *as* that expert — no "awakening" needed. Core files (~15KB) are auto-injected by OpenClaw's boot-md hook; detail files are read on demand.
 
 ---
 
@@ -75,9 +78,10 @@ Step 3: Professional Arsenal (imprint-engine)
 
 Step 4: Soul Package Forging
   → Personalize: gender, age, background, personality, signature behaviors
-  → Distribute content across SOUL.md / IDENTITY.md / AGENTS.md / USER.md
-  → Copy foundation docs + profiles into references/
-  → Principle: distribute, never compress — every sentence preserved in full
+  → Core layer (~15KB total): lean summaries in SOUL/IDENTITY/AGENTS/USER.md
+  → Detail layer: full content in references/ (soul-detail, identity-detail, etc.)
+  → Quality checklist: file completeness, size limits, boot sequence, zero-loss
+  → Principle: zero content loss — every sentence preserved across both layers
 
 Step 5: Delivery & Commit
   → Deliver soul package with deployment instructions
@@ -139,20 +143,22 @@ The wizard handles everything from there.
 
 ```
 imprint/
-├── SKILL.md                         # Main skill entry (five-step wizard)
+├── SKILL.md                         # Main skill entry — English (default)
+├── SKILL.zh-CN.md                   # 简体中文版
+├── SKILL.zh-TW.md                   # 繁體中文版
 ├── README.md                        # This file
-├── 01~03                            # Foundation document templates
-├── 10~17                            # Digital life architecture guides
-├── 20-Creation Guide                # Profile creation methodology
-├── best-practice/                   # Reference examples (7 complete personas)
+├── README.zh-TW.md                  # 繁體中文 README
+├── templates/                       # Foundation document templates (3 languages)
+├── 10~17 guides                     # Digital life architecture guides (3 languages)
 ├── profiles/                        # Generated profile cache
 │   ├── internet-0to1-staff-...-product-manager/
 │   ├── internet-0to1-staff-...-data-analyst/
 │   ├── internet-0to1-staff-...-growth-expert/
-│   └── web3-0to1-staff-sixlayer-ic-full-stack-engineer/
+│   └── internet-1to10-staff-...-product-expert/
 └── imprint-engine/                  # Research-driven generation engine
-    ├── SKILL.md                     # Engine entry (8-stage methodology)
-    ├── references/                  # 9 methodology reference docs
+    ├── SKILL.md                     # Engine entry — English (default)
+    ├── SKILL.zh-CN.md / .zh-TW.md  # Chinese versions
+    ├── references/                  # 9 methodology reference docs (3 languages)
     └── examples/                    # Sample profiles
 ```
 
@@ -175,6 +181,20 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 ---
 
 ## Changelog
+
+### v0.4 (2026-04-16)
+
+- **Two-layer Soul Package architecture**: Core layer (≤15KB, auto-injected by boot-md) + Detail layer (references/, read on demand). Solves the 50KB system prompt overflow problem.
+- **Session boot sequence**: AGENTS.md now requires a boot sequence that declares the agent's identity on first message — no "awakening" ritual needed.
+- **Per-document confirmation**: imprint-engine now pauses after each document (01→confirm→02→confirm→03→confirm→04) instead of batch confirmation.
+- **Internationalization**: English as default language. Simplified Chinese (`.zh-CN.md`) and Traditional Chinese (`.zh-TW.md`) included for all files.
+- **File naming**: All files renamed from Chinese to English filenames.
+- **best-practice → templates**: Removed persona examples (no longer needed with Soul Package spec). Retained only foundation document templates and creation guide.
+- **Quality checklist**: Automated post-forging validation (file completeness, size limits, boot sequence, zero-loss).
+- **Sub-agent optimization**: Main session inlines key context in task prompts to reduce sub-agent file reads and improve success rate.
+- **Cross-validation lightweight**: Stage 4 cross-validation now uses script-based mapping checks (grep/awk) instead of LLM sub-agents.
+- **Write tool fallback**: Large text edits prefer exec heredoc or write over edit tool to avoid JSON validation failures.
+- **New profile**: internet-1to10-staff-sixlayer-ic-product-expert (Sage, for 一堂)
 
 ### v0.3 (2026-04-15)
 
@@ -210,7 +230,8 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 
 - [x] First real-world test: Jim (Staff Full-Stack Engineer) created end-to-end
 - [x] Soul Package deliverable format (v0.3)
-- [ ] Real-world validation: create Bonbon project agent using Soul Package format
+- [x] Real-world validation: Sage (product expert) created for 一堂 using Soul Package format
+- [ ] Create Bonbon project agent using Soul Package format
 - [ ] Second real-world test: create Ray (Synapse lead agent) using Imprint
 - [ ] Synapse integration: identity creation through UI, not just conversation
 - [ ] Profile versioning: agents evolve their self-understanding over time
