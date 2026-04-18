@@ -182,6 +182,16 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 
 ## Changelog
 
+### v0.5 (2026-04-18)
+
+- **Sub-agent token budget**: 04 scenario playbook now generated in 3-4 batches (5-7 scenarios each) to prevent token exhaustion. Task prompts capped at 8KB with inlined context.
+- **Write tool fallback (explicit priority)**: write (≤15KB) > heredoc append (>15KB, ≤8KB chunks) > edit (≤5KB only). Large text via edit tool is now explicitly prohibited.
+- **Soul Package size enforcement**: Quality checklist now runs `wc -c` to verify core layer ≤15,360 bytes. Auto-trim strategy provided when over limit (AGENTS.md index → IDENTITY.md summary → SOUL.md top-5).
+- **Foundation document interview UX**: Silent existence check first; phased per-file interviews (3-5 questions per round) instead of dense all-at-once questioning.
+- **Path consistency**: Unified `profiles/` path to `skills/imprint/profiles/`. Delivery path unified to `soul-packages/` (was inconsistently referencing `team_personas/`).
+- **Cross-validation script**: New `imprint-engine/scripts/cross-validate.sh` — pure bash script for automated forward/reverse mapping checks and evidence heatmap. No external dependencies.
+- **i18n sync script**: New `scripts/sync-i18n.sh` — automated zh-CN → zh-TW synchronization with opencc (s2twp). Supports `--check` (dry run) and `--sync` modes. Falls back to direct copy when opencc unavailable.
+
 ### v0.4 (2026-04-16)
 
 - **Two-layer Soul Package architecture**: Core layer (≤15KB, auto-injected by boot-md) + Detail layer (references/, read on demand). Solves the 50KB system prompt overflow problem.
@@ -231,7 +241,7 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 - [x] First real-world test: Jim (Staff Full-Stack Engineer) created end-to-end
 - [x] Soul Package deliverable format (v0.3)
 - [x] Real-world validation: Sage (product expert) created for 一堂 using Soul Package format
-- [ ] Create Bonbon project agent using Soul Package format
+- [x] Create Bonbon project agent using Soul Package format (v0.5 testing)
 - [ ] Second real-world test: create Ray (Synapse lead agent) using Imprint
 - [ ] Synapse integration: identity creation through UI, not just conversation
 - [ ] Profile versioning: agents evolve their self-understanding over time

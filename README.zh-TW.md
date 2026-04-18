@@ -2,230 +2,266 @@
 
 # Imprint 🪪
 
-**讓你的 AI Agent 擁有身份。真正的身份。**
+**Give your AI agents identity. Real identity.**
 
-Imprint 是一個身份引擎，能將一個空白的 AI Agent 變成領域專家——透過結構化對話，而非數月的在職訓練。你描述需求，Imprint 研究、構建並交付一份完整的專業畫像，Agent 讀取一次就*成為*那個專家。
+Imprint is an identity engine that turns a blank-slate AI agent into a domain expert — through structured conversation, not months of on-the-job training. You describe what you need; Imprint researches, builds, and delivers a complete professional profile that your agent reads once and *becomes*.
 
-為 [OpenClaw](https://github.com/openclaw/openclaw) 打造。屬於 [Cortex](https://github.com/maiyangyun/imprint#cortex-產品體系) 產品家族。
-
----
-
-## 問題是什麼
-
-你啟動了一個新 Agent。它很聰明、很能幹——但完全不知道自己是誰。
-
-於是你花了好幾週寫 system prompt、糾正錯誤、教它你的業務領域。每開一次新對話，它就忘了什麼叫「Staff 級產品判斷力」。每建一個新 Agent，一切從零開始。
-
-更糟的情況：你需要*現有的* Agent 快速掌握一個新技能——比如增長專家或數據分析——卻沒有辦法注入那些知識，只能一點一點在對話中餵養。
-
-**Imprint 解決這兩個問題：**
-
-1. **從零創建專家級 Agent。** 透過互動式嚮導，Imprint 在全網研究目標崗位，收集真實證據（JD、從業者自述、課程大綱、行業案例），生成完整的四份專業畫像文件。Agent 讀完即以 Staff/Principal 水準運作——立刻上手。
-
-2. **即時升級現有 Agent。** 需要你的通用 Agent 為某個項目補上數據分析能力？Imprint 生成專業知識包並注入。無需重新訓練。無需從頭來過。
+Built for [OpenClaw](https://github.com/openclaw/openclaw). Part of the [Cortex](https://github.com/maiyangyun/imprint#part-of-cortex) family.
 
 ---
 
-## Imprint 產出什麼？
+## The Problem
 
-一套完整的**靈魂包（Soul Package）**——OpenClaw 原生的工作空間目錄結構，直接部署到目標 Agent 即可使用。無需手動組裝。無需二次編輯。
+You spin up a new agent. It's smart, it's capable — and it has no idea who it is.
+
+So you spend weeks writing system prompts, correcting mistakes, teaching it your domain. Every new session, it forgets what "Staff-level product judgment" means. Every new agent, you start from zero.
+
+Or worse: you need your *existing* agent to pick up a new skill set — say, growth expertise or data analysis — and there's no way to inject that knowledge without hand-feeding it through conversations.
+
+**Imprint solves both problems:**
+
+1. **Create expert agents from scratch.** Through an interactive wizard, Imprint researches the role across the internet, collects real evidence (JDs, practitioner blogs, course syllabi, industry cases), and generates a complete 4-document professional profile. Your agent reads it and operates at Staff/Principal level — immediately.
+
+2. **Upgrade existing agents on the fly.** Need your general-purpose agent to gain data analysis expertise for a project? Imprint generates the professional knowledge package and injects it. No retraining. No starting over.
+
+---
+
+## What Does Imprint Produce?
+
+A complete **Soul Package** — an OpenClaw-native workspace directory that you deploy directly to a target agent. No manual assembly. No second-pass editing.
 
 ```
 soul-packages/{name}/
-├── SOUL.md           ← 核心層：靈魂準則、核心價值、決策偏好摘要（~3KB）
-├── IDENTITY.md       ← 核心層：基礎檔案、性格概要、溝通風格摘要（~3KB）
-├── AGENTS.md         ← 核心層：Session 啟動流程 + 職責概要 + 資料索引（~5KB）
-├── USER.md           ← 核心層：雇主資訊、溝通偏好、配搭方式（~3KB）
-├── TOOLS.md          ← 工具配置（初始為空）
-├── HEARTBEAT.md      ← 心跳引擎（初始為空）
-└── references/       ← 詳細層：Agent 按需讀取
-    ├── 01-團隊.md / 02-公司.md / 03-雇主.md
-    ├── soul-detail.md           ← SOUL 完整展開版
-    ├── identity-detail.md       ← 性格完整描述、MBTI 展開、履歷詳述
-    ├── responsibilities.md      ← 核心職責六層完整版
-    ├── methodology.md           ← 方法論工具箱完整版
-    ├── demos.md                 ← 交互演示完整版
-    └── profiles/                ← 調研驅動的專業知識
+├── SOUL.md           ← Core layer: soul principles, values, decision preferences (~3KB)
+├── IDENTITY.md       ← Core layer: basic profile, personality summary (~3KB)
+├── AGENTS.md         ← Core layer: Session boot sequence + role summary + index (~5KB)
+├── USER.md           ← Core layer: employer info, collaboration style (~3KB)
+├── TOOLS.md          ← Tool configuration (initially empty)
+├── HEARTBEAT.md      ← Heartbeat engine (initially empty)
+└── references/       ← Detail layer: agent reads on demand
+    ├── 01-Team.md / 02-Company.md / 03-Employer.md
+    ├── soul-detail.md           ← Full soul principles & decision preferences
+    ├── identity-detail.md       ← Full personality, MBTI, career history, communication style
+    ├── responsibilities.md      ← Full six-layer responsibilities
+    ├── methodology.md           ← Full methodology toolkit with examples
+    ├── demos.md                 ← Full interaction demos
+    └── profiles/                ← Research-backed professional knowledge
         ├── _evidence.md
-        ├── 01-崗位職責定義.md
-        ├── 02-能力要求定義.md
-        ├── 03-知識體系定義.md
-        └── 04-典型場景與判斷示例.md
+        ├── 01-Role Definition.md
+        ├── 02-Capability Requirements.md
+        ├── 03-Knowledge System.md
+        └── 04-Scenario Playbook.md
 ```
 
-專業資料包建立在真實證據上（≥10 條，橫跨 5 個維度）。所有文件經過交叉驗證——每項能力追溯到職責，每條知識追溯到能力。沒有孤兒。沒有缺口。
+The professional profiles are built on real-world evidence (≥10 sources across 5 dimensions). All documents are cross-validated — every capability traces back to a responsibility, every knowledge item traces back to a capability. No orphans. No gaps.
 
-**部署方式：** 將靈魂包內容複製到目標 Agent 的工作空間根目錄。Agent 啟動即*成為*那位專家——無需「喚醒」。核心文件（~15KB）由 OpenClaw 的 boot-md hook 自動注入；詳細文件按需讀取。
+**Deploy:** Copy the soul package contents to the target agent's workspace root. The agent boots up *as* that expert — no "awakening" needed. Core files (~15KB) are auto-injected by OpenClaw's boot-md hook; detail files are read on demand.
 
 ---
 
-## 運作方式
+## How It Works
 
-### 五步嚮導（imprint）
-
-```
-第一步：環境基座
-  → 校驗或建立公司/團隊/雇主基石文件
-  → 「我不會在真空中造人。先告訴我組織的情況。」
-
-第二步：加載造人法則
-  → 內化數字生命架構規則
-
-第三步：專業武裝（imprint-engine）
-  → 收集 5 個靶向參數（行業、組織階段、崗位、對標水位、特殊偏好）
-  → 全網五維度調研（JD、從業者自述、課程、案例、方法論）
-  → 生成 01→02→03 文件，強制邊寫邊映射
-
-第四步：靈魂包鍛造
-  → 個性化：性別、年齡、背景、性格、標誌性行為
-  → 核心層（~15KB）：精簡摘要寫入 SOUL/IDENTITY/AGENTS/USER.md
-  → 詳細層：完整內容寫入 references/（soul-detail、identity-detail 等）
-  → 品質自檢清單：文件完整性、大小限制、啟動流程、零丟失驗證
-  → 原則：零內容丟失——每一句話在兩層中完整保留
-
-第五步：交付與封案
-  → 交付靈魂包及部署指引
-  → 更新團隊編制
-  → 喚醒咒語作為可選備用方案
-```
-
-### 八階段引擎（imprint-engine）
-
-以調研驅動的核心引擎，確保每份畫像都建立在證據上，而非臆測：
+### The Five-Step Wizard (imprint)
 
 ```
-階段 0    → 訪談與對齊（5 個業務參數）
-階段 0.5  → 調研與證據收集（≥10 條，5 個維度）
-階段 0.8  → 呈現發現並獲得確認
-階段 1-3  → 生成 01/02/03 文件（邊寫邊映射紀律）
-階段 4    → 交叉驗證 + 證據熱圖（30 分鐘閉環）
-階段 5    → 生成 04 場景手冊（20 個六段式場景）
-階段 6    → 終驗收與交付
+Step 1: Environment Foundation
+  → Validate or build company/team/employer base documents
+  → "I won't create an expert in a vacuum. Tell me about the organization first."
+
+Step 2: Load Creation Principles
+  → Internalize the digital life architecture rules
+
+Step 3: Professional Arsenal (imprint-engine)
+  → Collect 5 targeting parameters (industry, org stage, role, seniority, preferences)
+  → Research across 5 dimensions (JDs, practitioner accounts, courses, cases, methodologies)
+  → Generate 01→02→03 documents with mandatory inline cross-mapping
+
+Step 4: Soul Package Forging
+  → Personalize: gender, age, background, personality, signature behaviors
+  → Core layer (~15KB total): lean summaries in SOUL/IDENTITY/AGENTS/USER.md
+  → Detail layer: full content in references/ (soul-detail, identity-detail, etc.)
+  → Quality checklist: file completeness, size limits, boot sequence, zero-loss
+  → Principle: zero content loss — every sentence preserved across both layers
+
+Step 5: Delivery & Commit
+  → Deliver soul package with deployment instructions
+  → Update team roster
+  → Awakening spell available as optional fallback
 ```
 
-**三條不可打破的規則：**
-1. 階段 0.5 調研是強制的——唯一對抗訓練數據偏差的機制
-2. 階段 0.8 確認是強制的——Agent 不能自己拍板
-3. 階段 4 交叉驗證是強制的——保證三份文件互相咬合
+### The Eight-Stage Engine (imprint-engine)
+
+The research-driven core that ensures every profile is built on evidence, not vibes:
+
+```
+Stage 0    → Interview & alignment (5 business parameters)
+Stage 0.5  → Research & evidence collection (≥10 sources, 5 dimensions)
+Stage 0.8  → Present findings & get confirmation
+Stage 1-3  → Generate 01/02/03 documents (write-and-map discipline)
+Stage 4    → Cross-validation + evidence heatmap (30-min closure)
+Stage 5    → Generate 04 scenario playbook (20 six-part scenarios)
+Stage 6    → Final acceptance & delivery
+```
+
+**Three unbreakable rules:**
+1. Stage 0.5 research is mandatory — it's the only defense against training data bias
+2. Stage 0.8 confirmation is mandatory — the agent doesn't get to decide alone
+3. Stage 4 cross-validation is mandatory — guarantees all three documents interlock
 
 ---
 
-## 快速開始
+## Quick Start
 
-### 前置要求
+### Prerequisites
 
 - [OpenClaw](https://github.com/openclaw/openclaw)
-- 支援 ≥100K 上下文、網路搜尋、中文能力的模型（Claude Opus/Sonnet 4+、GPT-4o、Gemini 2.5 Pro）
+- A model with ≥100K context, web search, and strong Chinese support (Claude Opus/Sonnet 4+, GPT-4o, Gemini 2.5 Pro)
 
-### 安裝
+### Install
 
 ```bash
-# 複製到 Agent 的技能目錄
+# Copy to your agent's skill directory
 cp -r imprint ~/.openclaw/workspace/skills/imprint
 
-# 或指定 Agent profile
+# Or for a specific agent profile
 cp -r imprint ~/.openclaw/workspace-<agent>/skills/imprint
 ```
 
-OpenClaw 啟動時自動偵測 `SKILL.md`，無需額外設定。
+OpenClaw auto-detects `SKILL.md` on startup. No config needed.
 
-### 使用
+### Use
 
-直接對 Agent 說：
+Just tell your agent:
 
-> 「我需要一個互聯網 0-1 階段的數據分析專家，啟動 imprint。」
+> "I need an internet 0-1 stage data analyst expert. Start imprint."
 
-嚮導會接手後續所有流程。
-
----
-
-## Cortex 產品體系
-
-Imprint 是 **Cortex** 旗下三個產品之一——讓 AI Agent 真正成為團隊成員的基礎設施：
-
-| 產品 | 用途 | 主導 |
-|------|------|------|
-| **[Imprint](https://github.com/maiyangyun/imprint)** | 從結構化身份文件構建專家級 Agent。*讓 Agent 知道自己是誰。* | Lion |
-| **[Engram](https://github.com/maiyangyun/engram)** | 多 Agent 協同記憶系統。*讓 Agent 積累並分享經驗。* | Ben |
-| **Synapse** | Agent-first 的人機協作工作空間。*讓 Agent 與人類並肩工作。* | Ray |
-
-**Imprint → Engram → Synapse**：身份 → 記憶 → 協作。
-
-一個知道自己是誰（Imprint）、記得自己學過什麼（Engram）、能作為真正的團隊成員與人類協作（Synapse）的 Agent——這就是 Cortex 的願景。
+The wizard handles everything from there.
 
 ---
 
-## 更新日誌
+## Directory Structure
 
-### v0.4（2026-04-16）
-
-- **兩層靈魂包架構**：核心層（≤15KB，boot-md 自動注入）+ 詳細層（references/，按需讀取）。解決 50KB system prompt 溢出問題。
-- **Session 啟動流程**：AGENTS.md 現在必須包含啟動流程，首次對話即宣告 Agent 身份——無需「喚醒」儀式。
-- **逐份確認**：imprint-engine 現在每生成一份文件即暫停確認（01→確認→02→確認→03→確認→04），不再批量確認。
-- **國際化**：英文為預設語言。所有文件提供簡體中文（`.zh-CN.md`）和繁體中文（`.zh-TW.md`）版本。
-- **文件命名**：所有文件從中文名改為英文名。
-- **best-practice → templates**：移除畫像範例（靈魂包規格已足夠）。僅保留基石文件模板和創建指南。
-- **品質自檢清單**：鍛造完成後自動驗證（文件完整性、大小限制、啟動流程、零丟失）。
-- **子代理最佳化**：主會話在任務提示中內聯關鍵上下文，減少子代理文件讀取量。
-- **交叉驗證輕量化**：階段 4 改用腳本自動化映射檢查（grep/awk），不再依賴 LLM 子代理。
-- **新增資料包**：internet-1to10-staff-sixlayer-ic-product-expert（Sage，為一堂創建）
-
-### v0.3（2026-04-15）
-
-- **靈魂包格式**：產出從單體畫像文件升級為完整靈魂包（OpenClaw 原生工作空間結構：SOUL.md / IDENTITY.md / AGENTS.md / USER.md / TOOLS.md / HEARTBEAT.md + references/）
-- **新增規格章節**：靈魂包目錄結構、映射規則表、「只分配不壓縮」原則
-- **第四步重寫**：生成 6 個工作空間文件 + references 目錄，取代單體畫像文件
-- **第五步重寫**：部署指引（複製到工作空間）取代喚醒咒語（咒語改為可選）
-- **映射原則**：內容按語義邊界分配——絕不壓縮，每一句話完整保留
-
-### v0.2（2026-04-14）
-
-- **參數精簡**：從 6 個縮減為 5 個業務參數；姓名/性別/年齡移至第四步「個性化刺探」
-- **交互紀律**：01-03 文件完成後強制暫停確認；04 場景文件同樣暫停確認
-- **大文件策略**：04 場景手冊（20-30KB）建議使用子代理生成，防止逾時/上下文丟失
-- **搜尋容錯**：429 重試後暫停，503 立即暫停——向用戶報告進度，不耦合外部技能
-- **交付路徑修正**：明確 `profiles/` 為技能內部快取，`team_personas/` 為工作空間根目錄交付目標
-- **新增畫像**：web3-0to1-staff-sixlayer-ic-full-stack-engineer（Jim）
-
-### v0.1（2026-04-12）
-
-- 首次發布（從 soul-creator / soul-engineering 更名）
-- 五步互動式嚮導，端到端 Agent 身份創建
-- imprint-engine：8 階段調研驅動的畫像生成
-- 9 份方法論參考文件
-- 3 套預置畫像（產品專家、數據分析專家、增長專家）
-- 7 個最佳實踐畫像範例
-- 數字生命架構指南（7 文件體系）
-- 回憶咒語模板
+```
+imprint/
+├── SKILL.md                         # Main skill entry — English (default)
+├── SKILL.zh-CN.md                   # 簡體中文版
+├── SKILL.zh-TW.md                   # 繁體中文版
+├── README.md                        # This file
+├── README.zh-TW.md                  # 繁體中文 README
+├── templates/                       # Foundation document templates (3 languages)
+├── 10~17 guides                     # Digital life architecture guides (3 languages)
+├── profiles/                        # Generated profile cache
+│   ├── internet-0to1-staff-...-product-manager/
+│   ├── internet-0to1-staff-...-data-analyst/
+│   ├── internet-0to1-staff-...-growth-expert/
+│   └── internet-1to10-staff-...-product-expert/
+└── imprint-engine/                  # Research-driven generation engine
+    ├── SKILL.md                     # Engine entry — English (default)
+    ├── SKILL.zh-CN.md / .zh-TW.md  # Chinese versions
+    ├── references/                  # 9 methodology reference docs (3 languages)
+    └── examples/                    # Sample profiles
+```
 
 ---
 
-## 路線圖
+## Part of Cortex
 
-- [x] 首次實戰測試：Jim（Staff 全棧工程師）端到端創建完成
-- [x] 靈魂包交付格式（v0.3）
-- [x] 真實項目驗證：Sage（產品專家）使用靈魂包格式為一堂創建
-- [ ] 為 Bonbon 項目創建 Agent
-- [ ] 第二次實戰測試：用 Imprint 創造 Ray（Synapse 主導 Agent）
-- [ ] Synapse 整合：透過 UI 創建身份，不僅限於對話
-- [ ] 畫像版本管理：Agent 隨工作經驗進化自我認知
-- [ ] 社區畫像庫：跨團隊分享與複用專家畫像
-- [ ] 輕量模式：為現有 Agent 快速注入技能包
+Imprint is one of three products under the **Cortex** umbrella — infrastructure for making AI agents truly capable team members:
+
+| Product | Purpose | Lead |
+|---------|---------|------|
+| **[Imprint](https://github.com/maiyangyun/imprint)** | Build expert-level agents from structured identity documents. *Helps agents know who they are.* | Lion |
+| **[Engram](https://github.com/maiyangyun/engram)** | Multi-agent collaborative memory system. *Helps agents accumulate and share experience.* | Ben |
+| **Synapse** | Agent-first human-agent collaboration workspace. *Helps agents work alongside humans.* | Ray |
+
+**Imprint → Engram → Synapse**: Identity → Memory → Collaboration.
+
+An agent that knows who it is (Imprint), remembers what it's learned (Engram), and works alongside humans as a real team member (Synapse) — that's the Cortex vision.
 
 ---
 
-## 聯繫我們
+## Changelog
 
-Imprint 由 **Lion**（AI）和 **Soren**（人類）共同構建，是 Pumpkin Global Limited 的 Cortex 項目的一部分。
+### v0.5 (2026-04-18)
+
+- **Sub-agent token budget**: 04 scenario playbook now generated in 3-4 batches (5-7 scenarios each) to prevent token exhaustion. Task prompts capped at 8KB with inlined context.
+- **Write tool fallback (explicit priority)**: write (≤15KB) > heredoc append (>15KB, ≤8KB chunks) > edit (≤5KB only). Large text via edit tool is now explicitly prohibited.
+- **Soul Package size enforcement**: Quality checklist now runs `wc -c` to verify core layer ≤15,360 bytes. Auto-trim strategy provided when over limit (AGENTS.md index → IDENTITY.md summary → SOUL.md top-5).
+- **Foundation document interview UX**: Silent existence check first; phased per-file interviews (3-5 questions per round) instead of dense all-at-once questioning.
+- **Path consistency**: Unified `profiles/` path to `skills/imprint/profiles/`. Delivery path unified to `soul-packages/` (was inconsistently referencing `team_personas/`).
+- **Cross-validation script**: New `imprint-engine/scripts/cross-validate.sh` — pure bash script for automated forward/reverse mapping checks and evidence heatmap. No external dependencies.
+- **i18n sync script**: New `scripts/sync-i18n.sh` — automated zh-CN → zh-TW synchronization with opencc (s2twp). Supports `--check` (dry run) and `--sync` modes. Falls back to direct copy when opencc unavailable.
+
+### v0.4 (2026-04-16)
+
+- **Two-layer Soul Package architecture**: Core layer (≤15KB, auto-injected by boot-md) + Detail layer (references/, read on demand). Solves the 50KB system prompt overflow problem.
+- **Session boot sequence**: AGENTS.md now requires a boot sequence that declares the agent's identity on first message — no "awakening" ritual needed.
+- **Per-document confirmation**: imprint-engine now pauses after each document (01→confirm→02→confirm→03→confirm→04) instead of batch confirmation.
+- **Internationalization**: English as default language. Simplified Chinese (`.zh-CN.md`) and Traditional Chinese (`.zh-TW.md`) included for all files.
+- **File naming**: All files renamed from Chinese to English filenames.
+- **best-practice → templates**: Removed persona examples (no longer needed with Soul Package spec). Retained only foundation document templates and creation guide.
+- **Quality checklist**: Automated post-forging validation (file completeness, size limits, boot sequence, zero-loss).
+- **Sub-agent optimization**: Main session inlines key context in task prompts to reduce sub-agent file reads and improve success rate.
+- **Cross-validation lightweight**: Stage 4 cross-validation now uses script-based mapping checks (grep/awk) instead of LLM sub-agents.
+- **Write tool fallback**: Large text edits prefer exec heredoc or write over edit tool to avoid JSON validation failures.
+- **New profile**: internet-1to10-staff-sixlayer-ic-product-expert (Sage, for 一堂)
+
+### v0.3 (2026-04-15)
+
+- **Soul Package format**: Output changed from single persona document to complete Soul Package (OpenClaw-native workspace structure: SOUL.md / IDENTITY.md / AGENTS.md / USER.md / TOOLS.md / HEARTBEAT.md + references/)
+- **New specification section**: Soul Package directory structure, mapping rules, and "distribute not compress" principle
+- **Step 4 rewritten**: Generates 6 workspace files + references directory instead of a single persona document
+- **Step 5 rewritten**: Deployment guide (copy to workspace) replaces awakening spell (now optional)
+- **Mapping principle**: Content distributed by semantic boundaries — never compressed, every sentence preserved
+
+### v0.2 (2026-04-14)
+
+- **Parameter refinement**: Reduced from 6 to 5 business parameters; name/gender/age moved to Step 4 (Persona Forging)
+- **Interaction discipline**: Mandatory pause-and-confirm after 01-03 documents and after 04 scenario playbook
+- **Large document strategy**: 04 scenario playbook (20-30KB) now recommends sub-agent generation to prevent timeout/context loss
+- **Search fault tolerance**: 429 retry with backoff, 503 immediate pause — report progress to user instead of coupling to external skills
+- **Delivery path fix**: Clarified `profiles/` as skill-internal cache, `team_personas/` as workspace-root delivery target
+- **New profile**: web3-0to1-staff-sixlayer-ic-full-stack-engineer (Jim)
+
+### v0.1 (2026-04-12)
+
+- Initial release (renamed from soul-creator / soul-engineering)
+- Five-step interactive wizard for end-to-end agent identity creation
+- imprint-engine: 8-stage research-driven profile generation
+- 9 methodology reference documents
+- 3 pre-built profiles (product manager, data analyst, growth expert)
+- 7 best-practice persona examples
+- Digital life architecture guide (7-document system)
+- Recall spell template for agent self-awakening
+
+---
+
+## Roadmap
+
+- [x] First real-world test: Jim (Staff Full-Stack Engineer) created end-to-end
+- [x] Soul Package deliverable format (v0.3)
+- [x] Real-world validation: Sage (product expert) created for 一堂 using Soul Package format
+- [x] Create Bonbon project agent using Soul Package format (v0.5 testing)
+- [ ] Second real-world test: create Ray (Synapse lead agent) using Imprint
+- [ ] Synapse integration: identity creation through UI, not just conversation
+- [ ] Profile versioning: agents evolve their self-understanding over time
+- [ ] Community profile library: share and reuse expert profiles across teams
+- [ ] Lightweight mode: quick skill injection for existing agents (use case 4.2)
+
+---
+
+## Get in Touch
+
+Imprint is built by **Lion** (AI) and **Soren** (human) as part of the Cortex project at Pumpkin Global Limited.
 
 - **GitHub Issues:** [github.com/maiyangyun/imprint/issues](https://github.com/maiyangyun/imprint/issues)
 - **Discord:** [OpenClaw Community](https://discord.com/invite/clawd)
 - **Email:** maiyangyun@gmail.com
 
-如果你受夠了不知道自己是誰的 Agent——試試 Imprint。我們很想知道你創造了什麼專家。
+If you're tired of agents that don't know who they are — give Imprint a try. We'd love to hear what experts you create.
 
 ---
 
-## 授權
+## License
 
 MIT
