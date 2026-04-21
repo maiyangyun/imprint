@@ -54,6 +54,8 @@ Phase 6   → Final Acceptance (6.1 Vertical Spot-Check / 6.2 Methodology Retros
 | 4 | Target calibration | Staff / Principal / Director (default: Staff-Principal) |
 | 5 | Special preferences | Structure mode (strict six-layer / Path C), de-management, red-line constraints, etc. |
 
+⚠️ **Portability Principle (v0.6)**: These parameters are used for **calibration and research targeting only**. The generated profile documents must remain **organization-agnostic and reusable**. Do not hard-code any specific company name, product name, team structure, or business metrics into the profile content. Business context collected here serves as research guidance — the output documents describe universal professional capabilities at the specified calibration level, not capabilities tied to a particular employer.
+
 ⚠️ **Do not collect name, gender, age, or other personal information at this phase** — those belong to the parent wizard (imprint) Step 4 "Personalization Probing." imprint-engine is only responsible for generating the professional skeleton.
 
 Interview sequence: first confirm 1-4 in one pass → Agent determines structure mode and restates → after confirmation, probe for special preferences.
@@ -102,6 +104,8 @@ Present to the user: six-parameter restatement / research findings / skeleton dr
 7. **Mandatory inline mapping** — append `→ maps to responsibility` at the end of each 02 paragraph; append `→ supports competency` at the end of each 03 paragraph; if unable to map, go back and rewrite the current phase
 8. **Item count ratio** — 01:02:03 = 1 : 1.0~1.3 : 1.2~1.5 (inverted pyramid)
 
+**Portability Writing Rule (v0.6)**: All descriptions must use **generic industry language**, not employer-specific terminology. For example, write "the product team" not "the Bonbon product team"; write "a 0-to-1 stage consumer social platform" not "Bonbon's dating platform". Evidence citations may reference specific companies as industry benchmarks (e.g., [E03] Bumble's matching algorithm), but the responsibility/competency/knowledge descriptions themselves must be portable across any organization in the same industry vertical and stage.
+
 ---
 
 ## Phase 4: Cross-Validation
@@ -127,7 +131,17 @@ See `references/交叉验证.md` for details.
 
 Target 18-22 scenarios, distributed across layers. Append `→ maps to` mapping immediately after completing each scenario.
 
-**Large Document Subagent Strategy (v0.2)**: The 04 scenario document is typically 20-30KB. Prefer using a subagent (`sessions_spawn`) for generation to avoid progress loss due to network anomalies, LLM timeouts, or context compression. After generation, pause as well and send the document path for user confirmation.
+**Multi-Subagent Batch Generation Strategy (v0.6)**: The 04 scenario document is typically 20-30KB. Single-pass generation (whether main session or single subagent) is highly prone to interruption. Use the following batch strategy:
+
+1. **Planning**: Main session plans scenario allocation — divide 18-22 scenarios into batches of **≤3 scenarios per batch** (typically 6-7 batches).
+2. **Input trimming**: Each subagent receives only the **relevant responsibility/competency/knowledge fragments** for its assigned scenarios, NOT the full 01+02+03 documents. Main session extracts and inlines the relevant sections in the task prompt.
+3. **Subagent execution**: Spawn one subagent per batch via `sessions_spawn`. Each subagent writes its batch to a temporary file (e.g., `04-batch-1.md`, `04-batch-2.md`).
+4. **Assembly & validation**: After all batches complete, main session concatenates batch files into the final `04-典型工作场景与判断示例.md`, runs the professional adversary test across all scenarios, and verifies mapping coverage.
+5. **Cleanup**: Remove temporary batch files after successful assembly.
+
+**Why ≤3 per batch**: Each six-section scenario is ~1-1.5KB. Three scenarios ≈ 3-5KB output, well within safe generation limits. Combined with trimmed input (~5-8KB vs. 30KB+ full context), each subagent operates comfortably under token limits.
+
+After assembly, pause and send the document path for user confirmation.
 
 See `references/场景生成指南.md` for details.
 
