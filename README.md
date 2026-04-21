@@ -143,22 +143,19 @@ The wizard handles everything from there.
 
 ```
 imprint/
-├── SKILL.md                         # Main skill entry — English (default)
-├── SKILL.zh-CN.md                   # 简体中文版
-├── SKILL.zh-TW.md                   # 繁體中文版
+├── SKILL.md                         # Main skill entry (English)
 ├── README.md                        # This file
 ├── README.zh-TW.md                  # 繁體中文 README
-├── templates/                       # Foundation document templates (3 languages)
-├── 10~17 guides                     # Digital life architecture guides (3 languages)
+├── templates/                       # Foundation document templates
+├── 10~17 guides                     # Digital life architecture guides
 ├── profiles/                        # Generated profile cache
 │   ├── internet-0to1-staff-...-product-manager/
 │   ├── internet-0to1-staff-...-data-analyst/
 │   ├── internet-0to1-staff-...-growth-expert/
 │   └── internet-1to10-staff-...-product-expert/
 └── imprint-engine/                  # Research-driven generation engine
-    ├── SKILL.md                     # Engine entry — English (default)
-    ├── SKILL.zh-CN.md / .zh-TW.md  # Chinese versions
-    ├── references/                  # 9 methodology reference docs (3 languages)
+    ├── SKILL.md                     # Engine entry (English)
+    ├── references/                  # 9 methodology reference docs
     └── examples/                    # Sample profiles
 ```
 
@@ -181,6 +178,12 @@ An agent that knows who it is (Imprint), remembers what it's learned (Engram), a
 ---
 
 ## Changelog
+
+### v0.6 (2026-04-21)
+
+- **Profile portability**: Generated profile documents (01-04) are now organization-agnostic. Business parameters (industry, org stage) are used for research calibration only — no company names, product names, or specific metrics are hard-coded into the output. Organization context is injected at deployment time via cornerstone documents and AGENTS.md.
+- **Multi-subagent batch generation for 04**: Replaced single-subagent strategy with multi-batch approach. Scenarios split into batches of ≤3 each (~6-7 batches total). Each subagent receives only relevant responsibility/capability/knowledge fragments, not full 01+02+03. Main session assembles and cross-validates.
+- **English-only skill documents**: All skill docs (SKILL.md, references/, templates/, guides) unified to English. Removed 46 zh-CN/zh-TW duplicate files. README.zh-TW.md retained for human readers.
 
 ### v0.5 (2026-04-18)
 
